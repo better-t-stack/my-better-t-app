@@ -1,0 +1,35 @@
+{
+	"name": "server",
+	"main": "src/index.ts",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"start": "node dist/src/index.js",
+		"build": "tsc && tsc-alias",
+		"dev:bun": "bun run --hot src/index.ts",
+		"check-types": "tsc --noEmit",
+		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+		"db:local": "turso dev --db-file local.db",
+		"auth:generate": "npx @better-auth/cli generate --output ./src/db/auth-schema.ts",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.13.8",
+		"@hono/trpc-server": "^0.3.4",
+		"@trpc/server": "^11.0.0",
+		"dotenv": "^16.4.7",
+		"hono": "^4.7.5",
+		"zod": "^3.24.2",
+		"drizzle-orm": "^0.38.4",
+		"@libsql/client": "^0.14.0",
+		"better-auth": "^1.2.4"
+	},
+	"devDependencies": {
+		"@types/node": "^22.13.11",
+		"drizzle-kit": "^0.30.5",
+		"tsc-alias": "^1.8.11",
+		"tsx": "^4.19.2",
+		"typescript": "^5.8.2"
+	}
+}
